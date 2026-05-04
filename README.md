@@ -4,42 +4,41 @@
 
 <h1>Trigonometrijos testas</h1>
 
-<h3>1. sin(90°) = ?</h3>
-<button onclick="check(this, true)">1</button>
-<button onclick="check(this, false)">0</button>
-<button onclick="check(this, false)">-1</button>
+<p>1. sin(90°) = ?</p>
+<button onclick="ats(1,1,this)">1</button>
+<button onclick="ats(1,0,this)">0</button>
+<button onclick="ats(1,-1,this)">-1</button>
 
-<h3>2. cos(0°) = ?</h3>
-<button onclick="check(this, false)">0</button>
-<button onclick="check(this, true)">1</button>
-<button onclick="check(this, false)">-1</button>
+<p>2. cos(0°) = ?</p>
+<button onclick="ats(2,0,this)">0</button>
+<button onclick="ats(2,1,this)">1</button>
+<button onclick="ats(2,-1,this)">-1</button>
 
-<h3>3. tan(45°) = ?</h3>
-<button onclick="check(this, false)">0</button>
-<button onclick="check(this, true)">1</button>
-<button onclick="check(this, false)">2</button>
+<p>3. tan(45°) = ?</p>
+<button onclick="ats(3,0,this)">0</button>
+<button onclick="ats(3,1,this)">1</button>
+<button onclick="ats(3,2,this)">2</button>
 
-<p id="rez"></p>
+<h3 id="rezultatas"></h3>
 
 <script>
 let score = 0;
-let answered = 0;
+let done = {1:false,2:false,3:false};
 
-function check(btn, correct){
-    if(btn.disabled) return;
+function ats(q, correct, btn){
+    if(done[q]) return;
 
-    if(correct){
+    done[q] = true;
+
+    if((q===1 && correct===1) || (q===2 && correct===1) || (q===3 && correct===1)){
         score++;
         btn.style.background = "lightgreen";
     } else {
         btn.style.background = "red";
     }
 
-    btn.disabled = true;
-    answered++;
-
-    if(answered === 3){
-        document.getElementById("rez").innerText =
+    if(done[1] && done[2] && done[3]){
+        document.getElementById("rezultatas").innerText =
         "Tavo rezultatas: " + score + " / 3";
     }
 }
